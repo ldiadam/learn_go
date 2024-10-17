@@ -1,0 +1,257 @@
+package sprint
+
+import (
+	"fmt"
+	"math"
+)
+
+func Aba(a, b int) int {
+	return a / b
+}
+
+func Mea(a, b, c float32) float32 {
+	return a + b + c/3
+}
+
+func Cas(n float64) int {
+	return int(math.Round(n))
+}
+
+func Shift(r rune, step int) rune {
+	result := int(r) + step
+	return rune(result)
+}
+
+func Concat(s1, s2, delim string) string {
+	return s1 + delim + s2
+}
+
+func RevAlp(ch rune) rune {
+	return 97 + (122 - ch)
+}
+
+func IsNeg(n int) bool {
+	if n < 0 {
+		return true
+	} else {
+		return false
+	}
+}
+
+func InFloat(i int, f float32) string {
+	if float32(i) > f {
+		return "Integer"
+	} else if float32(i) == f {
+		return "Same"
+	} else {
+		return "Float"
+	}
+}
+
+func Seas(month string) string {
+	switch month {
+	case "jan", "feb", "dec":
+		return "winter"
+	case "mar", "apr", "may":
+		return "spring"
+	case "jun", "jul", "aug":
+		return "summer"
+	case "sept", "oct", "nov":
+		return "autumn"
+	default:
+		return "invalid input: " + month
+	}
+}
+
+func Acc(n int) int {
+	if n < 0 {
+		return 0
+	}
+	result := 0
+	for i := 0; i <= n; i++ {
+		result += i
+	}
+
+	return result
+}
+
+func Bet(from, to rune) string {
+
+	f := int(from)
+	t := int(to)
+
+	if f > t {
+		for i := f - 1; i > t; i-- {
+			println(string(i))
+		}
+	} else {
+		for i := f + 1; i < t; i++ {
+			println(string(i))
+		}
+	}
+
+	return ""
+}
+
+func Doo(a int, op string, b int) int {
+	switch op {
+	case "+":
+		return a + b
+	case "-":
+		return a - b
+	case "/":
+		if a == 0 || b == 0 {
+			return 0
+		} else {
+			return a / b
+		}
+	case "*":
+		return a * b
+	case "%":
+		return a % b
+	default:
+		return 0
+	}
+
+}
+
+func CountD(from, to, step, divisor int) int {
+	count := 0
+	for i := from; i < to; i += step {
+		check := i % divisor
+		if check == 0 {
+			count++
+		}
+	}
+
+	return count
+}
+
+func FindD(from, to, divisor int) int {
+	for i := from; i < to; i++ {
+		check := i % divisor
+		if check == 0 {
+			return i
+		}
+	}
+
+	return -1
+}
+
+func AlMas(n int) string {
+	result := ""
+	for i := 0; i < n; i++ {
+		result += string(rune(i + 97))
+	}
+
+	return result
+}
+
+func RevAlpStep(step int) string {
+	if step <= 0 {
+		step = 1
+	}
+	result := ""
+	for i := 122; i > 97; i -= step {
+		result += string(rune(i))
+	}
+
+	return result
+}
+
+func Pai() string {
+	result := ""
+	for i := 0; i < 10; i++ {
+		for j := i; j < 10; j++ {
+			if i != j {
+				result += fmt.Sprintf("%02d %02d, ", i, j)
+			}
+		}
+	}
+
+	println(result[:len(result)-2])
+
+	return ""
+}
+
+func Comb() string {
+	result := ""
+	for i := 0; i < 8; i++ {
+		for j := i + 1; j < 9; j++ {
+			for k := j + 1; k < 10; k++ {
+				result += fmt.Sprintf("%d%d%d, ", i, j, k)
+			}
+		}
+	}
+
+	return result
+}
+
+func Cd(n int) string {
+	result := ""
+	for i := n; i > 0; i -= 2 {
+		result += string('0'+i) + ", "
+	}
+
+	result += "0!"
+
+	return result
+}
+
+func AlpNum(n int) string {
+	result := ""
+	minus := ""
+	if n < 0 {
+		n = n * -1
+		minus = "-"
+	}
+
+	for n > 0 {
+		//println(n)
+		digit := n % 10
+		//println(digit)
+		letter := digtoLet(digit)
+		println(letter)
+		result = letter + result
+		n /= 10
+	}
+
+	return minus + result
+}
+
+func digtoLet(n int) string {
+	if n < 1 || n > 26 {
+		return "a"
+	}
+
+	return string('a' + n)
+}
+
+func Cd2(from, to, step, divisor int) int {
+
+	count := 0
+
+	if step < 0 {
+		step = 1
+	}
+
+	for i := from; i < to; i += step {
+		calc := i % divisor
+		if calc == 0 {
+			count++
+		}
+	}
+
+	return count
+}
+
+func CountDown2(n int) string {
+	result := ""
+	for i := n; i > 0; i-- {
+		result += string('0'+i) + ", "
+	}
+
+	result += "0!"
+
+	return result
+}
